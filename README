@@ -1,0 +1,15 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=4527
+
+`vim-emblem` adds emblem (http://emblemjs.com/) support to vim.
+
+Features:
+
+* detects `*.emblem` files as `emblem`
+* sets standard coding style (two-space indentation)
+* syntax highlighting
+
+Todo: 
+
+* smart indentation
+
+Project page: https://github.com/heartsentwined/vim-emblem
