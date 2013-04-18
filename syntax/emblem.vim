@@ -1,7 +1,7 @@
 " Language:    emblem
 " Maintainer:  heartsentwined <heartsentwined@cogito-lab.com>
 " URL:         http://github.com/heartsentwined/vim-emblem
-" Version:     1.1.2
+" Version:     1.1.3
 " Last Change: 2013 Apr 18
 " License:     GPL-3.0
 
@@ -38,7 +38,7 @@ hi def link eblInlineText eblRaw
 syn cluster eblHbsComponent contains=eblHbsArg,eblhbsAttr,eblHbsTextOp,eblLineOp
 
 syn match eblHbsOp            '\v\s*\=+'                                                         nextgroup=eblHbsHelper     skipwhite contained display
-syn match eblHbsHelper        '\v(\w|-|\.)+'                          contains=eblCtrlFlowHelper nextgroup=@eblHbsComponent skipwhite contained display
+syn match eblHbsHelper        '\v\w(\w|-|\.)*'                        contains=eblCtrlFlowHelper nextgroup=@eblHbsComponent skipwhite contained display
 syn match eblHbsTextOp        '|'                                                                nextgroup=eblHbsText                 contained display
 syn match eblHbsText          '.*'                                                                                                    contained display
 syn match eblCtrlFlowHelper   '\v<(if|unless|else|each|with)>'                                                                        contained display
@@ -65,7 +65,7 @@ syn match eblAttr                '\v\s*(\w|-)+\=@='   contains=eblKnownEvent nex
 syn match eblAttrOp              '='                                         nextgroup=eblAttrLit,eblAttrClassLit,eblAttrBind,eblAttrRegion              contained display
 syn match eblAttrLit             /\v(["'])[^\1]{-}\1/ contains=eblItpl       nextgroup=@eblAttrComponent                                       skipwhite contained display
 syn match eblAttrBind            /\v(\w|-)+/                                 nextgroup=eblAttrBindAltOp,eblAttrBindUnboundOp,@eblAttrComponent skipwhite contained display
-syn match eblAttrBindAltOp       '\v(\w|-|:)@=:'                             nextgroup=eblAttrBindAlt,eblAttrBindAltOp                                   contained display
+syn match eblAttrBindAltOp       '\v(\w|-|:)@=:(\w|-|:)@='                   nextgroup=eblAttrBindAlt,eblAttrBindAltOp                                   contained display
 syn match eblAttrBindAlt         /\v(\w|-)+/                                 nextgroup=eblAttrBindAltOp,@eblAttrComponent                      skipwhite contained display
 syn match eblAttrClassLit        '\v:(\w|-)+'                                nextgroup=@eblAttrComponent                                       skipwhite contained display
 syn match eblAttrBindUnboundOp   '\v(\w|-)@!!'                               nextgroup=@eblAttrComponent                                       skipwhite contained display
@@ -79,7 +79,7 @@ hi def link eblAttrBindUnboundOp    eblOperator
 
 syn region eblAttrRegion matchgroup=eblAttrRegionOp start='{' end='}' keepend contains=eblAttrRegionBind,eblAttrRegionClassLit nextgroup=@eblAttrComponent skipwhite contained display
 syn match eblAttrRegionBind      /\v(\w|-)+/                                 nextgroup=eblAttrRegionBindAltOp                                            contained display
-syn match eblAttrRegionBindAltOp ':'                                         nextgroup=eblAttrRegionBindAlt,eblAttrRegionBindAltOp                       contained display
+syn match eblAttrRegionBindAltOp '\v(\w|-|:)@=:(\w|-|:)@='                   nextgroup=eblAttrRegionBindAlt,eblAttrRegionBindAltOp                       contained display
 syn match eblAttrRegionBindAlt   /\v(\w|-)+/                                 nextgroup=eblAttrRegionBindAltOp                                            contained display
 syn match eblAttrRegionClassLit  '\v:(\w|-)+:@!'                             nextgroup=eblAttrRegionBind                                       skipwhite contained display
 hi def link eblAttrRegionOp         eblOperator
